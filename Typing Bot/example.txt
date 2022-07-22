@@ -1,0 +1,127 @@
+# Press and release space
+keyboard.press(Key.space)
+keyboard.release(Key.space) 
+
+# Type a lower case A; this will work even if no key on the
+# physical keyboard is labelled 'A'
+keyboard.press('a')
+keyboard.release('a')
+
+# Type two upper case As
+keyboard.press('A')
+keyboard.release('A')
+with keyboard.pressed(Key.shift):
+    keyboard.press('a')
+    keyboard.release('a')
+
+# Type 'Hello World' using the shortcut type method
+keyboard.type('Hello World')
+
+
+
+
+
+
+
+
+    
+screenWidth, screenHeight = pyautogui.size() # Get the size of the primary monitor.
+screenWidth, screenHeight
+(2560, 1440)
+
+currentMouseX, currentMouseY = pyautogui.position() # Get the XY position of the mouse.
+currentMouseX, currentMouseY
+(1314, 345)
+
+pyautogui.moveTo(100, 150) # Move the mouse to XY coordinates.
+
+pyautogui.click()          # Click the mouse.
+pyautogui.click(100, 200)  # Move the mouse to XY coordinates and click it.
+
+
+pyautogui.move(400, 0)      # Move the mouse 400 pixels to the right of its current position.
+pyautogui.doubleClick()     # Double click the mouse.
+pyautogui.moveTo(500, 500, duration=2, tween=pyautogui.easeInOutQuad)  # Use tweening/easing function to move mouse over 2 seconds.
+
+pyautogui.write('Hello world!', interval=0.25)  # type with quarter-second pause in between each key
+pyautogui.press('esc')     # Press the Esc key. All key names are in pyautogui.KEY_NAMES
+
+with pyautogui.hold('shift'):  # Press the Shift key down and hold it.
+    pyautogui.press(['left', 'left', 'left', 'left'])  # Press the left arrow key 4 times.
+# Shift key is released automatically.
+
+pyautogui.hotkey('ctrl', 'c') # Press the Ctrl-C hotkey combination.
+
+pyautogui.alert('This is the message to display.') # Make an alert box appear and pause the program until OK is clicked.
+
+
+
+
+
+
+
+
+
+
+
+# Mention the installed location of Tesseract-OCR in your system
+pytesseract.pytesseract.tesseract_cmd = 'System_path_to_tesseract.exe'
+ 
+# Read image from which text needs to be extracted
+img = cv2.imread("sample.jpg")
+ 
+# Preprocessing the image starts
+ 
+# Convert the image to gray scale
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+ 
+# Performing OTSU threshold
+ret, thresh1 = cv2.threshold(gray, 0, 255, cv2.THRESH_OTSU | cv2.THRESH_BINARY_INV)
+ 
+# Specify structure shape and kernel size.
+# Kernel size increases or decreases the area
+# of the rectangle to be detected.
+# A smaller value like (10, 10) will detect
+# each word instead of a sentence.
+rect_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (18, 18))
+ 
+# Applying dilation on the threshold image
+dilation = cv2.dilate(thresh1, rect_kernel, iterations = 1)
+ 
+# Finding contours
+contours, hierarchy = cv2.findContours(dilation, cv2.RETR_EXTERNAL,
+                                                 cv2.CHAIN_APPROX_NONE)
+ 
+# Creating a copy of image
+im2 = img.copy()
+ 
+# A text file is created and flushed
+file = open("recognized.txt", "w+")
+file.write("")
+file.close()
+ 
+# Looping through the identified contours
+# Then rectangular part is cropped and passed on
+# to pytesseract for extracting text from it
+# Extracted text is then written into the text file
+for cnt in contours:
+    x, y, w, h = cv2.boundingRect(cnt)
+     
+    # Drawing a rectangle on copied image
+    rect = cv2.rectangle(im2, (x, y), (x + w, y + h), (0, 255, 0), 2)
+     
+    # Cropping the text block for giving input to OCR
+    cropped = im2[y:y + h, x:x + w]
+     
+    # Open the file in append mode
+    file = open("recognized.txt", "a")
+     
+    # Apply OCR on the cropped image
+    text = pytesseract.image_to_string(cropped)
+     
+    # Appending the text into file
+    file.write(text)
+    file.write("\n")
+     
+    # Close the file
+    file.close
