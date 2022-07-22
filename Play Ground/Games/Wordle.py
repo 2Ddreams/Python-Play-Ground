@@ -1,14 +1,16 @@
 import random
-from typing import ParamSpecArgs
 
-letter_check_display = {1: "", 2: "", 3: "", 4: "", 5: ""}
+letter_check_display = {0: "", 1: "", 2: "", 3: "", 4: ""}
 
 word_bank = ["apple", "table", "water"]
 
-chosen_word = random.choice(word_bank).upper()
+check_list = []
 
-tries = 5
+chosen_word = random.choice(word_bank)
 
+tries = 4
+
+word = False
 
 def InterfaceBlock():
     print("-----")
@@ -17,30 +19,42 @@ def InterfaceBlock():
 
 def WordMatchingBlock(chosen_word, answer_word):
     for i in range(5):
-        print(i)
         if answer_word[i] == chosen_word[i]:
-            letter_check_display[i] = "clcp"
-        elif i in chosen_word:
-            letter_check_display[i] = "wlcp"
-        elif i not in chosen_word:
-            letter_check_display[i] = "wlwp"
+            letter_check_display[i] = True #cpcl
+        elif answer_word[i] in chosen_word:
+            letter_check_display[i] = "wpcl"
+        elif answer_word[i] not in chosen_word:
+            letter_check_display[i] = "wpwl"
     return letter_check_display
             
-
+def DictToListConverter(): 
+    for i in range(len(letter_check_display)):
+        letter_check_display[i] = True
+        check_list.append(letter_check_display.get(i))
+    
 
 
 answer = InterfaceBlock()
-for i in "p":
-    pass
-while tries <= 0 :
-    answer = InterfaceBlock()
-    for i in chosen_word:
-        for i in "p":
-            pass
-        
-    pass
-
-
-
-print(WordMatchingBlock(chosen_word, answer))
 print(chosen_word)
+print(WordMatchingBlock(chosen_word, answer))
+DictToListConverter()
+
+while tries != 0:
+   
+    if all(letter_check_display):
+        print(all(letter_check_display))
+        exit()
+    else:
+        answer = InterfaceBlock()
+        print(chosen_word)
+        print(WordMatchingBlock(chosen_word, answer))
+        tries -= 1
+
+
+if all(letter_check_display):
+    print("Well done you completed te puzzle.")
+else:
+    print("You Ran Out Of Tries")
+    print(letter_check_display)
+
+

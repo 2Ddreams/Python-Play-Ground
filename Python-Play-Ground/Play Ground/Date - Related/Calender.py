@@ -1,4 +1,7 @@
 
+from functools import total_ordering
+
+
 months_list = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
 
 days = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]

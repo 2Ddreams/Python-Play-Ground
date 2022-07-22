@@ -18,8 +18,5 @@ for i in range(len(alphabet)):
     
 for i in word:
     decrypted_word += str(code_dict.get(i))
-
-
-print(code_dict)
 print(decrypted_word)
 
