@@ -1,8 +1,11 @@
-
 import random
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 cap_alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+numbers = "1234567890"
+
+symbols = "!@#$%^&*():;'<>?,./\|`~"
 
 split_alphabet_list = []
 split_cap_alphabet_list = []
@@ -33,6 +36,8 @@ for i in range(26):
         final_string += str(chosen_upper_letter)
         split_cap_alphabet_list.remove(chosen_upper_letter)
 
+for i in range(10):
+    break
 
 
 print(split_alphabet_list)

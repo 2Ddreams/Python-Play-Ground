@@ -1,0 +1,2 @@
+when killing an enemy randomly gain hp
+only attack no retreating

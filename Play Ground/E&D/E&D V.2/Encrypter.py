@@ -23,5 +23,8 @@ for i in range(len(alphabet)):
 #print(code_dict)
 
 for i in word:
-    encrypted_word += str(code_dict.get(i))
+    if i == " ":
+        encrypted_word += " "
+    else:
+        encrypted_word += str(code_dict.get(i))
 print(encrypted_word)

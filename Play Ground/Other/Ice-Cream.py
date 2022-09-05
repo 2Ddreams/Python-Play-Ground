@@ -15,6 +15,7 @@ print("Hi, Xiao Ming")
 print("Would you like to buy an Ice-cream? (y/n):")
 TextSpacer(1)
 answer = input("Answer: ")
+answer = answer.lower()
 if answer == "y":
     TextSpacer(1)
     print("What typ of ice-cream would you like:")
@@ -22,6 +23,7 @@ if answer == "y":
         print(f" - {i}")
     TextSpacer(1)
     type_of_ice_cream = input("Answer: ")
+    type_of_ice_cream = type_of_ice_cream.lower()
     TextSpacer(1)
     if type_of_ice_cream in dict_of_ice_cream:
         print(f"That would be ${dict_of_ice_cream.get(type_of_ice_cream)} please.")
