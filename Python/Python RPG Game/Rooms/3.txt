@@ -1,0 +1,4 @@
+15,
+Small Troll,16,5,5,2,1,10,3,
+Skeleton Triplet,15,3,0,2,0,25,3, 
+Corrupted Archer,25,3,0,10,5,6,30
